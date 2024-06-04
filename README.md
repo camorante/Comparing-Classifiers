@@ -66,13 +66,13 @@ In this dataset there are no null values to fix and no imputations have been per
 
 <ins>Correlations HeatMap</ins>
 
-![](images/fig1.png)
+![](images/fig2.png)
 
 There are several characteristics with a high correlation ('emp.var.rate', 'cons.price.idx', 'nr.employed')
 
 <ins>Imbalance</ins>
 
-![](images/fig2.png)
+![](images/fig1.png)
 
 As can be seen, the target variable is very unbalanced, which may affect the predictions.
 
@@ -80,14 +80,13 @@ As can be seen, the target variable is very unbalanced, which may affect the pre
 
 For the training I used 4 different models in order to find the most optimal one (A dummy classifier will be used as a baseline reference model):
 
-Only 7 features were used
-
 * Logistic Regression
 * KNN
 * Decision Tree
 * SVM
 
-I use the default settings for each of the models
+Note: I use the default settings for each of the models
+Note 2: Only 7 features were used
 
 ### Baseline Model Evaluation ###
 
@@ -96,3 +95,53 @@ I use the default settings for each of the models
 ![](images/fig4.png)
 
 These results show that the best method for this specific dataset is Decision Tree since it has a good training time and in addition to a good accuracy(not the highest but close) it also has the highest F1 score. These models using only 7 characteristics are not ideal for prediction, they are too close to the base model (Dummy Classifier), it is notorious that it is necessary to add more characteristics to them.
+
+### Improved Model ###
+
+In the correlation analysis some features were eliminated which had a high correlation between them, among those eliminated are the following:
+
+* emp.var.rate
+* cons.price.idx
+* nr.employed
+
+In addition, the duration feature has also been removed, since as the column instructions indicate, this feature is set to zero before contacting a customer and it does not make sense to use it as a prediction feature.
+
+We add the other features that we omitted in the previous point except for those mentioned in the previous paragraph.
+
+Now to perform a deeper analysis we will use GridSearchCV and HalvingRandomSearchCV to find the best parameters for each method.
+
+For the training I used 7 different models in order to find the most optimal one
+
+* Logistic Regression with GridSearchCV
+* KNN with GridSearchCV
+* Decision Tree with GridSearchCV
+* SVM Polynomial Kernel with HalvingRandomSearchCV
+* LinearSVC
+* SGDClassifier with GridSearchCV
+* Decision Tree with GridSearchCV and Oversampling
+
+### Improved Model Evaluation and Findings ###
+
+![](images/fig5.png)
+
+![](images/fig6.png)
+
+As we can see after training several models with different parameters and different search techniques, Decision Tree together with ADASYN allows us to obtain a model with a higher f1 score than the others as well as an acceptable recall to handle false negatives.
+
+Decision tree using adasyn is the model with the highest F1 and recall value, a high recall means that the model correctly identifies most of the subscribers (minimizing false negatives). This is crucial if the cost of not identifying a subscriber is high. For example, if each subscribed user represents an important business opportunity, losing a subscriber due to a false negative can be very costly.
+
+### Feature Importances
+
+![](images/fig7.png)
+
+As we can see Euribor is the feature that most influences a customer's acceptance of whether or not to sign up for a deposit, it is not surprising that this feature is above all others because if Euribor rises, reflecting a higher interest rate environment, it is very likely that banks will be able to increase interest rates on savings accounts to make them more attractive to depositors. This is especially true if banks rely heavily on customer deposits for funding, but, as a very important point to keep in mind, when interest rates are low, returns on other financial investments (such as bonds and time deposits) also tend to be low. In this environment, people may choose to open savings accounts as a low-risk strategy, protecting their capital while waiting for better investment opportunities.
+
+The month and day are other characteristics that influence the decision to open a deposit or not, which is something to take into account because depending on the month and day it is very likely that customers will be more willing to open an account.
+
+The consumer confidence index (cons.conf.idx) measures the degree of optimism consumers feel about the general state of the economy and their personal financial situation. This index can have a significant influence on individual's financial decisions, including the opening of savings accounts at a bank.
+
+And what would be the reason?
+
+When the consumer confidence index is high, consumers feel more confident about their future financial situation. This may lead them to feel less inclined to save cautiously and instead spend more on consumption and investments. That can create a high confidence environment, if the economy is expanding, banks may offer higher interest rates on savings accounts to attract more deposits and fund additional loans.
+
+In contrast, if the consumer confidence index is low, consumers may be more concerned about economic uncertainty and, therefore, more inclined to save money to protect against possible future financial difficulties. This may result in an increase in the opening of savings accounts.
