@@ -191,7 +191,8 @@ Married is the marital status most likely to accept subscription followed by sin
 
 2. It is more fruitful to offer bank account subscription services to people with higher levels of education.
 
-3. Euribor is a very important feature to take into account, if interest rates go down it is time to offer to carry out a campaign.
+3. The Euribor is a very important feature to take into account, if interest rates go down it is the right time to carry out a campaign.
 
 4. Targeting people with a single or married marital status yields better results than targeting people with unknown or divorced marital status.
 
+5. It is more viable to offer banking and deposit services when the consumer confidence index is low.
