@@ -56,3 +56,43 @@ Social and economic context attributes:  <br />
 
 Output variable (desired target):  <br />
 21 **y**: has the client subscribed a term deposit? (binary: 'yes','no')  <br />
+
+
+### Data Preparation and Cleaning ###
+
+In this dataset there are no null values to fix and no imputations have been performed.
+
+#### Correlations and Imbalance: ####
+
+<ins>Correlations HeatMap</ins>
+
+![](images/fig1.png)
+
+There are several characteristics with a high correlation ('emp.var.rate', 'cons.price.idx', 'nr.employed')
+
+<ins>Imbalance</ins>
+
+![](images/fig2.png)
+
+As can be seen, the target variable is very unbalanced, which may affect the predictions.
+
+### Baseline Model ###
+
+For the training I used 4 different models in order to find the most optimal one (A dummy classifier will be used as a baseline reference model):
+
+Only 7 features were used
+
+* Logistic Regression
+* KNN
+* Decision Tree
+* SVM
+
+I use the default settings for each of the models
+
+### Baseline Model Evaluation ###
+
+![](images/fig3.png)
+
+![](images/fig4.png)
+
+These results show that the best method for this specific dataset is Decision Tree since it has a good training time and in addition to a good accuracy(not the highest but close) it also has the highest F1 score. These models using only 7 characteristics are not ideal for prediction, they are too close to the base model (Dummy Classifier), it is notorious that it is necessary to add more characteristics to them.
