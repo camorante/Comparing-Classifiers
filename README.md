@@ -86,6 +86,7 @@ For the training I used 4 different models in order to find the most optimal one
 * SVM
 
 Note: I use the default settings for each of the models
+
 Note 2: Only 7 features were used
 
 ### Baseline Model Evaluation ###
@@ -145,3 +146,52 @@ And what would be the reason?
 When the consumer confidence index is high, consumers feel more confident about their future financial situation. This may lead them to feel less inclined to save cautiously and instead spend more on consumption and investments. That can create a high confidence environment, if the economy is expanding, banks may offer higher interest rates on savings accounts to attract more deposits and fund additional loans.
 
 In contrast, if the consumer confidence index is low, consumers may be more concerned about economic uncertainty and, therefore, more inclined to save money to protect against possible future financial difficulties. This may result in an increase in the opening of savings accounts.
+
+### Features Analysis
+
+#### Average Euribor Value by Subscribed Target
+
+![](images/fig8.png)
+
+This graph shows that the Euribor has a very important influence on the prediction of whether or not a client accepts to subscribe to a bank account. As can be seen the average Euribor is higher in customers who did not accept the deposit while in customers who did accept the deposit the Euribor is lower, so the conclusion here is that when the Euribor has a low value it is the best time to promote the bank's deposit accounts.
+
+Banks may offer additional incentives to open savings accounts when Euribor is low. This may include account opening bonuses, promotional interest rates or additional services. These incentives may entice people to open new savings accounts.
+
+#### Acceptance Rate By Month
+
+![](images/fig9.png)
+
+As we can see some months have a higher activity than others in terms of customer contact (months like June or July), especially the month of May, but even though it was a month with the highest acceptance of customers to open a bank account, it has a much higher rejection rate than other months, while for example months like March, October or September are months with a more 50/50 rate and even though there are fewer calls and fewer subscribers accepting the deposit, it is a month that could present an opportunity to improve that positive acceptance with a lower rejection rate.
+
+This is probably because May, June or July in Europe are summer months and people would rather spend their money on vacation than on saving. With the exception of December which is a somewhat special month, some months are more likely to improve the acceptance of subscribing to a bank account if the above is taken into account.
+
+#### Acceptance Rate By Day of Week
+
+![](images/fig10.png)
+
+Although the data per day of the week are very similar, it is possible to rescue that Thursday has a slightly higher acceptance rate than the others, being Monday and Friday the ones with less acceptance, it is advisable that the calls can be made better on Wednesday and Thursday in order to improve the acceptance rate.
+
+#### Acceptance Rate By Education
+
+![](images/fig11.png)
+
+Keep in mind that the highest acceptance comes from people with a university degree and similar. 
+
+#### Acceptance Rate By Marital Status
+
+![](images/fig12.png)
+
+Married is the marital status most likely to accept subscription followed by single.
+
+
+### Next steps and recommendations
+
+
+1. One way to improve this model is to perform an update of the data and increase the number of records to try to train a neural network to see if this type of model would improve prediction.
+
+2. It is more fruitful to offer bank account subscription services to people with higher levels of education.
+
+3. Euribor is a very important feature to take into account, if interest rates go down it is time to offer to carry out a campaign.
+
+4. Targeting people with a single or married marital status yields better results than targeting people with unknown or divorced marital status.
+
